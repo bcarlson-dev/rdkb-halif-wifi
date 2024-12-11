@@ -2293,6 +2293,42 @@ INT wifi_setP2PCrossConnect(INT apIndex, BOOL disabled);
  **********************************************************************************/
 INT wifi_getP2PCrossConnect(INT apIndex, BOOL *disabled);
 
+/**
+* @brief Add a vendor-specific Information Element to the AP's beacon/probe response
+*
+* @param[in]  apIndex  Access point index
+* @param[in]  oui      Pointer to the 3-byte Organization Unique Identifier
+* @param[in]  data     Pointer to the vendor-specific data to be included in the IE
+* @param[in]  data_len Length of the vendor-specific data in bytes
+*
+* @return The status of the operation
+* @retval RETURN_OK if successful
+* @retval RETURN_ERR if any error is detected
+*
+* @execution Synchronous
+* @sideeffect Updates beacon and probe response frames
+*
+*/
+INT wifi_addVendorSpecificIE(INT apIndex, const UCHAR *oui, UCHAR *data, UINT data_len);
+
+/**
+* @brief Remove a vendor-specific Information Element from the AP's beacon/probe response (if present)
+*
+* @param[in]  apIndex  Access point index
+* @param[in]  oui      Pointer to the 3-byte Organization Unique Identifier
+* @param[in]  data     Pointer to the vendor-specific data to match for removal
+* @param[in]  data_len Length of the vendor-specific data in bytes
+*
+* @return The status of the operation
+* @retval RETURN_OK if successful
+* @retval RETURN_ERR if any error is detected
+*
+* @execution Synchronous
+* @sideeffect Updates beacon and probe response frames
+*
+*/
+INT wifi_removeVendorSpecificIE(INT apIndex, const UCHAR *oui, UCHAR *data, UINT data_len);
+
 /* wifi_getAllTWTsessions() function */
 /**
 * @brief get all the TWT session(individual or Broadcast) connected to that AP Index .
